@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.study.dao.UserDao">
+    <!-- 二级缓存配置-->
+    <cache eviction="LRU" flushInterval="60000" size="1024" >
+    </cache>
+
+    <resultMap id="BaseResultMap" type="com.example.study.entity.User">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="name" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="age" property="age" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="modify_time" property="modifyTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, name, age, create_time, modify_time
+    </sql>
+
+    <select id="getUserByName" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where name = #{name,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertUser" parameterType="com.example.study.entity.User">
+    insert into user
+      (id, name, age, create_time, modify_time)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+            #{age,jdbcType=INTEGER},now(), now())
+  </insert>
+
+</mapper>
