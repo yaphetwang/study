@@ -35,7 +35,7 @@ import java.util.Arrays;
  *
  * 所以此处使用 @RestController注解   或者在方法上加上@ResponseBody
  */
-@Controller
+@RestController
 public class UserController {
 
     @Resource
