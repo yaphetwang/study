@@ -9,7 +9,6 @@ import com.example.study.service.transactiontest.TxServiceImpl;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +31,7 @@ import java.util.Arrays;
  * 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。
  * @RequestBody 将 HTTP 请求正文插入方法中，
  * 使用适合的 HttpMessageConverter 将请求体写入某个对象。
- *
+ * <p>
  * 所以此处使用 @RestController注解   或者在方法上加上@ResponseBody
  */
 @RestController
